@@ -1,0 +1,12 @@
+- clean: ['~']
+
+- link:
+    ~/.files: ''
+    ~/.tmux.conf: .tmux.conf
+    ~/.bashrc: .bashrc
+    ~/.vim: vim/
+    ~/.vimrc: .vimrc
+    ~/.vimperatorrc: .vimperatorrc
+
+- shell:
+  - [git update-submodules, Installing/updating submodules]
