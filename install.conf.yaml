@@ -9,4 +9,4 @@
     ~/.vimperatorrc: .vimperatorrc
 
 - shell:
-  - [git update-submodules, Installing/updating submodules]
+  - [git submodule update --init --recursive --remote]
