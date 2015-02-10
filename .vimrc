@@ -1,17 +1,13 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
 
-" set the runtime path to include Vundle and initialize
+" Vundle
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -25,41 +21,52 @@ Plugin 'file:///home/gmarik/path/to/plugin'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 Plugin 'user/L9', {'name': 'newL9'}
-
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'tpope/vim-surround.git'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Raimondi/delimitMate.git'
 
 Bundle 'christoomey/vim-tmux-navigator'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-" lightline settings:
-"
 
+" Colors
+Bundle 'Solarized'
+Bundle 'xoria256.vim'
+Bundle 'Mustang2'
+Bundle 'molokai'
+Bundle 'Wombat'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+call vundle#end()
+filetype plugin indent on
+
+" lightline settings:
+set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'wombat',
-      \ 'separator': { 'left': '>', 'right': '<' },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ 'component': {
+      \   'readonly': '%{&readonly?"":""}',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
-set laststatus=2
-
 if !has('gui_running')
   set t_Co=256
 endif
+
+" caps lock esc
+au VimEnter * silent !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+" switch ; and :
+noremap ; :
+noremap : ;
+
+noremap Y y$
+
+" line wrapping & friendly movement between display lines
+set breakindent
+nnoremap k gk
+nnoremap j gj
+nnoremap gk k
+nnoremap gj j
 
 set backspace=2
 syntax on

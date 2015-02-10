@@ -13,3 +13,6 @@ alias ls='ls --color=auto'
 
 # Custom bash prompt via kirsle.net/wizards/ps1.html
 export PS1="\[$(tput setaf 4)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 4)\]\h\[$(tput setaf 7)\][\[$(tput setaf 3)\]\W\[$(tput setaf 7)\]]:\[$(tput sgr0)\]"
+
+set -o vi
+set show-mode-in-prompt on
