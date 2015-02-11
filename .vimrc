@@ -14,34 +14,23 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 " Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-Plugin 'user/L9', {'name': 'newL9'}
-Plugin 'scrooloose/nerdtree.git'
 Plugin 'tpope/vim-surround.git'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Raimondi/delimitMate.git'
-
+Plugin 'flazz/vim-colorschemes'
 Bundle 'christoomey/vim-tmux-navigator'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'fholgado/minibufexpl.vim'
 
-" Colors
-Bundle 'Solarized'
-Bundle 'xoria256.vim'
-Bundle 'Mustang2'
-Bundle 'molokai'
-Bundle 'Wombat'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 call vundle#end()
 filetype plugin indent on
 
 " lightline settings:
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'Tomorrow_Night_Eighties',
       \ 'component': {
       \   'readonly': '%{&readonly?"":""}',
       \ },
@@ -51,6 +40,38 @@ let g:lightline = {
 if !has('gui_running')
   set t_Co=256
 endif
+" gets rid of mode status, as lightline takes care of that
+set noshowmode
+
+"ranger as file browser
+function! RangeChooser()
+    let temp = tempname()
+    " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
+    " with ranger 1.4.2 through 1.5.0 instead.
+    "exec 'silent !ranger --choosefile=' . shellescape(temp)
+    exec 'silent !ranger --choosefiles=' . shellescape(temp)
+    if !filereadable(temp)
+        redraw!
+        " Nothing to read.
+        return
+    endif
+    let names = readfile(temp)
+    if empty(names)
+        redraw!
+        " Nothing to open.
+        return
+    endif
+    " Edit the first item.
+    exec 'edit ' . fnameescape(names[0])
+    " Add any remaning items to the arg list/buffer list.
+    for name in names[1:]
+        exec 'argadd ' . fnameescape(name)
+    endfor
+    redraw!
+endfunction
+command! -bar RangerChooser call RangeChooser()
+nnoremap <leader>r :<C-U>RangerChooser<CR>
+
 
 " caps lock esc
 au VimEnter * silent !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
@@ -70,7 +91,7 @@ nnoremap gj j
 
 set backspace=2
 syntax on
-colorscheme delek
+colorscheme Tomorrow-Night-Eighties
 filetype indent on
 set autoindent
 set number
@@ -82,4 +103,3 @@ set expandtab
 set smarttab
 set ai
 set si
-set noshowmode
