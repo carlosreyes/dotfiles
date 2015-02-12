@@ -1,4 +1,3 @@
-# Add nano as default editor
 export EDITOR=vim
 export TERMINAL=terminator
 export BROWSER=firefox

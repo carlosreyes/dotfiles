@@ -4,6 +4,7 @@
     ~/.files: ''
     ~/.tmux.conf: .tmux.conf
     ~/.bashrc: .bashrc
+    ~/.zshrc: .zshrc
     ~/.vim: vim/
     ~/.vimrc: .vimrc
     ~/.vimperatorrc: .vimperatorrc
