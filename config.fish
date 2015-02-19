@@ -15,3 +15,7 @@ set fish_theme budspencer
 . $fish_path/oh-my-fish.fish
 
 set -U fish_key_bindings fish_vi_key_bindings
+
+if status --is-login
+  set PATH $PATH /usr/bin /sbin /home/c/.gem/ruby/2.2.0/bin
+end

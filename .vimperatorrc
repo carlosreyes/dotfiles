@@ -33,6 +33,15 @@ source! /home/c/.vimperatorrc.local
 " vim: set ft=vimperator:
 
 colorscheme darkness
+set gui=nonavigation
 
 noremap J gT
 noremap K gt
+
+noremap j 3j
+noremap k 3k
+
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;

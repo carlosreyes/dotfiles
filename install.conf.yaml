@@ -3,6 +3,7 @@
 - link:
     ~/.files: ''
     ~/.tmux.conf: .tmux.conf
+    ~/.config/fish/config.fish: config.fish
     ~/.bashrc: .bashrc
     ~/.zshrc: .zshrc
     ~/.vim: vim/
