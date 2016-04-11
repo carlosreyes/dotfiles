@@ -11,6 +11,8 @@
     ~/.vimperatorrc: .vimperatorrc
     ~/.config/ranger/rc.conf: rc.conf
     ~/.config/ranger/colorschemes/euphrasia.py: euphrasia.py
+    ~/.config/tint2/tint2rc: tint2rc
+    ~/stbuild/st/config.h: config.h
 
 - shell:
   - [git submodule update --init --recursive --remote]
